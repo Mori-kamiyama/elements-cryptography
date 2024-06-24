@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Elements-cryptography</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>暗号化</h2>
+        <p>全てひらがな入力してください</p>
+        <input type="text" id="encryptionInput" placeholder="文章" class="placeholder">
+        <button id="encryption" onclick="encryClick()">暗号化する</button>
+        <input type="checkbox" id="checkbox" class="checkbox">区切り文字をカンマにする</input>
+        <div id="encryptionResult">暗号化された文章:</div>
+    </div>
+    
+    <div class="container">
+        <h2>復号化</h2>
+        <p>最初は大文字で、区切りはスペースかカンマで入力してください</p>
+        <input type="text" id="decryptionInput" placeholder="文章" class="placeholder">
+        <button id="decryption" onclick="decryClick()">復号化する</button>
+        <div id="decryptionResult">復号化された文章:</div>
+    </div>
+</body>
+</html>
