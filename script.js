@@ -1,13 +1,19 @@
 function encryClick() {
-    var text = document.getElementById("encryptionInput").value;
-    
+    const text = document.getElementById("encryptionInput").value;
+    var caesarCipher = parseInt(document.getElementById("numberIn").value, 10);
+    if (isNaN(caesarCipher)) {
+        caesarCipher = 0;
+    }
+
     let returnText = [];
 
     for (let i = 0; i < text.length; i++) {
         let hiragana = generateHiraganaArray();
         let elements = generateElementsArray();
 
-        const index = hiragana.indexOf(text[i]);
+        var index = hiragana.indexOf(text[i]);
+
+        index = (index + caesarCipher) % 118;
 
         returnText.push(elements[index]);
     }
@@ -21,6 +27,10 @@ function encryClick() {
 function decryClick(){
     var input = document.getElementById("decryptionInput").value;
     const text = input.split(/[\s,]+/);
+    var caesarCipher = parseInt(document.getElementById("numberOut").value, 10);
+    if (isNaN(caesarCipher)) {
+        caesarCipher = 0;
+    }
     
     let returnText = [];
 
@@ -28,7 +38,9 @@ function decryClick(){
         let hiragana = generateHiraganaArray();
         let elements = generateElementsArray();
 
-        const index = elements.indexOf(text[i]);
+        var index = elements.indexOf(text[i]);
+
+        index = (index - caesarCipher) % 118;
 
         returnText.push(hiragana[index]);
     }
@@ -41,12 +53,15 @@ function decryClick(){
 // Unicodeの範囲で「あ」から「ん」までの文字を生成し、「が」行、「ざ」行、「だ」行、「ば」行、「ぱ」行も含める関数
 function generateHiraganaArray() {
     const hiraganaArray = [
-        "あ","い","う","え","お","か","き","く","け","こ","さ","し","す",
-        "せ","そ","た","ち","つ","て","と","な","に","ぬ","ね","の","は",
-        "ひ","ふ","へ","ほ","ま","み","む","め","も","や","ゆ","よ","ら",
-        "り","る","れ","ろ","わ","を","ん","が","ぎ","ぐ","げ","ご","ざ",
-        "じ","ず","ぜ","ぞ","だ","ぢ","づ","で","ど","ば","び","ぶ","べ",
-        "ぼ","ぱ","ぴ","ぷ","ぺ","ぽ"
+        "あ","い","う","え","お","か","き","く","け","こ","さ","し",
+        "す","せ","そ","た","ち","つ","て","と","な","に","ぬ","ね",
+        "の","は","ひ","ふ","へ","ほ","ま","み","む","め","も","や",
+        "ゆ","よ","ら","り","る","れ","ろ","わ","を","ん","が","ぎ",
+        "ぐ","げ","ご","ざ","じ","ず","ぜ","ぞ","だ","ぢ","づ","で",
+        "ど","ば","び","ぶ","べ","ぼ","ぱ","ぴ","ぷ","ぺ","ぽ","ゃ",
+        "ゅ","ょ","っ","a","b","c","d","e","f","g","h","i","j",
+        "k","l","m","n","o","p","q","r","s","t","u","v","w",
+        "x","y","z","0","1","2","3","4","5","6","7","8","9",
     ];
     
 
